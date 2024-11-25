@@ -17,4 +17,10 @@ public class Ball : MonoBehaviour
     {
         
     }
+
+    public void UpdatePoint(int point)
+    {
+        this.point = point;
+        pointUi.text = point.ToString();
+    }
 }
