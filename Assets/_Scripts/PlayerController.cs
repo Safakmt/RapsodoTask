@@ -21,6 +21,8 @@ public class PlayerController : MonoBehaviour
     private Slider _slider;
     [SerializeField]
     private TextMeshProUGUI _timeText;
+    [SerializeField]
+    private TextMeshProUGUI _scoreText;
 
     public float maxTime = 30f; // Oyun süresi (saniye)
     private string LIFT = "Lift";
@@ -76,10 +78,7 @@ public class PlayerController : MonoBehaviour
                 _currentState = PlayerState.Idle;
             }
         }
-        else
-        {
-            return;
-        }
+
         if (_currentState == PlayerState.Returning && currentTarget == null) { 
             _agent.SetDestination(_golfCart.position);
             currentTarget = _golfCart;
@@ -179,6 +178,7 @@ public class PlayerController : MonoBehaviour
 
         if (other.CompareTag("GolfCart") && currentTarget == _golfCart)
         {
+            _scoreText.text = totalScore.ToString();
             _currentRound = 0;
             _currentState = PlayerState.Collecting;
             currentTarget = null;
