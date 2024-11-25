@@ -12,13 +12,8 @@ public class RandomBallGeneration : MonoBehaviour
     public float navMeshSampleDistance = 1f;
     public int textureIndex = 2; // kum 2. indexte
     private List<GameObject> _balls = new List<GameObject>();
-    void Start()
-    {
-        SpawnBalls();
-        AssignPointsToBalls();
-    }
 
-    void SpawnBalls()
+    public void SpawnBalls()
     {
         TerrainData terrainData = _terrain.terrainData;
         Vector3 terrainSize = terrainData.size;
@@ -74,15 +69,9 @@ public class RandomBallGeneration : MonoBehaviour
     }
 
 
-    void AssignPointsToBalls()
+    public void AssignPointsToBalls()
     {
         List<GameObject> highValueBalls = GetBallsOnTexture();
-
-        foreach (var ballObj in highValueBalls)
-        {
-            Ball ball = ballObj.GetComponent<Ball>();
-            ball.UpdatePoint(5);
-        }
 
         foreach(var ballObj in _balls)
         {
@@ -96,6 +85,13 @@ public class RandomBallGeneration : MonoBehaviour
                 ball.UpdatePoint(1);
             }
         }
+
+        foreach (var ballObj in highValueBalls)
+        {
+            Ball ball = ballObj.GetComponent<Ball>();
+            ball.UpdatePoint(5);
+        }
+
     }
     List<GameObject> GetBallsOnTexture()
     {
@@ -105,35 +101,41 @@ public class RandomBallGeneration : MonoBehaviour
         Vector3 terrainPosition = _terrain.transform.position;
         Vector3 terrainSize = terrainData.size;
 
-        // Terrain'deki alpha map'i alýn
+        // alpha mapi hesapla
         int alphaMapWidth = terrainData.alphamapWidth;
-        print(alphaMapWidth);
         int alphaMapHeight = terrainData.alphamapHeight;
-        print(alphaMapHeight);
         float[,,] alphaMaps = terrainData.GetAlphamaps(0, 0, alphaMapWidth, alphaMapHeight);
         foreach (var ball in _balls)
         {
-            // Topun Terrain üzerindeki koordinatlarýný hesapla
+            // topun terraindaki koordinati 
             Vector3 ballPosition = ball.transform.position;
             float normalizedX = (ballPosition.x - terrainPosition.x) / terrainSize.x;
-            print(normalizedX);
             float normalizedZ = (ballPosition.z - terrainPosition.z) / terrainSize.z;
 
-            // Alpha map üzerindeki koordinatlarý bul
+            // Alphamap koordinati
             int mapX = Mathf.RoundToInt(normalizedX * (alphaMapWidth - 1));
-            print(mapX);
             int mapZ = Mathf.RoundToInt(normalizedZ * (alphaMapHeight - 1));
 
-            // Hedef dokunun deðerini al
+            // aradigimiz textureun bu koordinattaki degeri
             float textureValue = alphaMaps[mapZ, mapX, textureIndex];
 
-            // Dokunun deðeri bir eþik üzerinde ise topu listeye ekle
-            if (textureValue > 0.5f) // 0.5 eþik deðeri, isteðe göre deðiþtirilebilir
+            // deger 0.2 uzerinde ise topu listeye ekle
+            if (textureValue > 0.2f) 
             {
                 ballsOnTexture.Add(ball);
             }
         }
 
         return ballsOnTexture;
+    }
+
+    public List<Ball> GetBalls()
+    {
+        List<Ball> balls = new List<Ball>();
+        foreach (var ballObj in _balls)
+        {
+            balls.Add(ballObj.GetComponent<Ball>());
+        }
+        return balls;
     }
 }
