@@ -231,7 +231,6 @@ GameObject:
   - component: {fileID: 4270781926552187496}
   - component: {fileID: 4100434330029660655}
   - component: {fileID: 5695125799047500614}
-  - component: {fileID: 9141157900861470712}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -304,19 +303,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &9141157900861470712
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5414959805172604091}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.49999994
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7010490741741462660
 GameObject:
   m_ObjectHideFlags: 0
@@ -327,6 +313,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5202602498461417546}
   - component: {fileID: 4272898633271196728}
+  - component: {fileID: 201106856642055282}
   m_Layer: 0
   m_Name: GolfBall
   m_TagString: Untagged
@@ -364,8 +351,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77c3fb5255104184280f35afe08c5343, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointUi: {fileID: 4814357735170463235}
-  point: 0
+  scoreUi: {fileID: 4814357735170463235}
+  score: 0
+--- !u!135 &201106856642055282
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7010490741741462660}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &7597876554357006948
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    public TextMeshProUGUI pointUi;
-    public int point;
+    public TextMeshProUGUI scoreUi;
+    public int score;
     void Start()
     {
         
@@ -20,7 +20,9 @@ public class Ball : MonoBehaviour
 
     public void UpdatePoint(int point)
     {
-        this.point = point;
-        pointUi.text = point.ToString();
+        score = point;
+        scoreUi.text = point.ToString();
     }
+
+    
 }
