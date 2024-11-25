@@ -111,7 +111,6 @@ public class RandomBallGeneration : MonoBehaviour
         int alphaMapHeight = terrainData.alphamapHeight;
         print(alphaMapHeight);
         float[,,] alphaMaps = terrainData.GetAlphamaps(0, 0, alphaMapWidth, alphaMapHeight);
-        print(alphaMaps);
         foreach (var ball in _balls)
         {
             // Topun Terrain üzerindeki koordinatlarýný hesapla
