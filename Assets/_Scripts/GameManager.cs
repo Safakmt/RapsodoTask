@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     {
         _randomBallGeneration.SpawnBalls();
         _randomBallGeneration.AssignPointsToBalls();
+        _playerController = _player.GetComponent<PlayerController>();
         List<Ball> ballList = _randomBallGeneration.GetBalls();
         _playerController.Getballs(ballList);
     }

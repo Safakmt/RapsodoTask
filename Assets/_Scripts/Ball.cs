@@ -7,16 +7,6 @@ public class Ball : MonoBehaviour
 {
     public TextMeshProUGUI scoreUi;
     public int score;
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void UpdatePoint(int point)
     {
